@@ -11,7 +11,7 @@ const mockTransactions = [
     total_amount: 45.67,
     people_involved: 2,
     paid_by_user_id: "550e8400-e29b-41d4-a716-446655440010",
-    added_by_user_id: "550e8400-e29b-41d4-a716-446655440010"
+    added_by_user_id: "550e8400-e29b-41d4-a716-446655440010",
   },
   {
     id: "550e8400-e29b-41d4-a716-446655440002",
@@ -20,10 +20,10 @@ const mockTransactions = [
     shared_board_id: "550e8400-e29b-41d4-a716-446655440000",
     date: "2024-08-09",
     item: "Coffee",
-    total_amount: 4.50,
+    total_amount: 4.5,
     people_involved: 2,
     paid_by_user_id: "550e8400-e29b-41d4-a716-446655440011",
-    added_by_user_id: "550e8400-e29b-41d4-a716-446655440011"
+    added_by_user_id: "550e8400-e29b-41d4-a716-446655440011",
   },
   {
     id: "550e8400-e29b-41d4-a716-446655440003",
@@ -32,10 +32,10 @@ const mockTransactions = [
     shared_board_id: "550e8400-e29b-41d4-a716-446655440000",
     date: "2024-08-08",
     item: "Gas",
-    total_amount: 38.20,
+    total_amount: 38.2,
     people_involved: 2,
     paid_by_user_id: "550e8400-e29b-41d4-a716-446655440010",
-    added_by_user_id: "550e8400-e29b-41d4-a716-446655440010"
+    added_by_user_id: "550e8400-e29b-41d4-a716-446655440010",
   },
   {
     id: "550e8400-e29b-41d4-a716-446655440004",
@@ -47,7 +47,7 @@ const mockTransactions = [
     total_amount: 12.99,
     people_involved: 2,
     paid_by_user_id: "550e8400-e29b-41d4-a716-446655440011",
-    added_by_user_id: "550e8400-e29b-41d4-a716-446655440011"
+    added_by_user_id: "550e8400-e29b-41d4-a716-446655440011",
   },
   {
     id: "550e8400-e29b-41d4-a716-446655440005",
@@ -56,11 +56,11 @@ const mockTransactions = [
     shared_board_id: "550e8400-e29b-41d4-a716-446655440000",
     date: "2024-08-06",
     item: "Movie tickets",
-    total_amount: 24.00,
+    total_amount: 24.0,
     people_involved: 2,
     paid_by_user_id: "550e8400-e29b-41d4-a716-446655440010",
-    added_by_user_id: "550e8400-e29b-41d4-a716-446655440010"
-  }
+    added_by_user_id: "550e8400-e29b-41d4-a716-446655440010",
+  },
 ];
 
 export default function Home() {
@@ -69,36 +69,72 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-8">
-      <div className="max-w-2xl mx-auto">
-        <h1 className="text-4xl font-bold text-center mb-12 mt-8">Bean Counter</h1>
-        
-        <div className="bg-white dark:bg-gray-800 rounded-lg border-2 border-gray-300 dark:border-gray-600 p-6 mb-8 shadow-sm">
+    <div className="container min-h-screen">
+      {/* Floating background shapes */}
+      <div className="floating-shapes">
+        <div className="shape"></div>
+        <div className="shape"></div>
+        <div className="shape"></div>
+        <div className="shape"></div>
+      </div>
+
+      <div className="mx-auto max-w-4xl">
+        <h1 className="text-gradient mt-12 mb-16 text-center text-5xl font-bold">
+          🫘 Bean Counter
+        </h1>
+
+        {/* Main transactions board */}
+        <div className="board mb-8 p-6">
+          <div className="mb-6 flex items-center justify-between">
+            <h2 className="text-2xl font-bold text-white">
+              Recent Transactions
+            </h2>
+            <span className="badge badge-purple">
+              {mockTransactions.length} items
+            </span>
+          </div>
+
           <div className="mb-4">
-            <div className="grid grid-cols-3 gap-4 pb-2 border-b border-gray-200 dark:border-gray-600 font-semibold">
+            <div className="grid grid-cols-4 gap-4 border-b border-purple-100 pb-3 font-semibold text-white">
               <span>Date</span>
               <span>Item</span>
               <span>Amount</span>
+              <span>Status</span>
             </div>
           </div>
-          
-          <div className="space-y-3">
-            {mockTransactions.map((transaction) => (
-              <div key={transaction.id} className="grid grid-cols-3 gap-4 py-2 border-b border-gray-100 dark:border-gray-700 last:border-b-0">
-                <span className="text-gray-700 dark:text-gray-300">{transaction.date}</span>
-                <span className="text-gray-900 dark:text-gray-100">{transaction.item}</span>
-                <span className="text-gray-700 dark:text-gray-300 font-mono">${transaction.total_amount.toFixed(2)}</span>
+
+          <div className="space-y-2">
+            {mockTransactions.map((transaction, index) => (
+              <div
+                key={transaction.id}
+                className="grid grid-cols-4 gap-4 rounded-lg bg-white/90 p-3 transition-all hover:bg-white hover:shadow-md"
+              >
+                <span className="text-gray-600">
+                  {new Date(transaction.date).toLocaleDateString()}
+                </span>
+                <span className="font-medium text-gray-800">
+                  {transaction.item}
+                </span>
+                <span className="font-mono font-semibold text-purple-500">
+                  ${transaction.total_amount.toFixed(2)}
+                </span>
+                <span
+                  className={`badge ${index % 3 === 0 ? "badge-purple" : index % 3 === 1 ? "badge-orange" : "badge-green"}`}
+                >
+                  Split {transaction.people_involved}
+                </span>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="text-center">
+        {/* Action buttons */}
+        <div className="flex flex-col items-center gap-4 text-center sm:flex-row sm:justify-center">
           <button
             onClick={handleAddTransaction}
-            className="bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 rounded-lg px-8 py-3 font-semibold hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+            className="btn-secondary flex items-center gap-2 text-lg"
           >
-            ADD
+            <span>➕</span> Add Transaction
           </button>
         </div>
       </div>
