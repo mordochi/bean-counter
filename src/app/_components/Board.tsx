@@ -69,61 +69,47 @@ export default function Board() {
   };
 
   return (
-    <div className="container min-h-screen">
-      <div className="mx-auto max-w-4xl">
-        {/* Main transactions board */}
-        <div className="board mb-8 p-6">
-          <div className="mb-6 flex items-center justify-between">
-            <h2 className="text-2xl font-bold text-white">
-              Recent Transactions
-            </h2>
-            <span className="badge badge-purple">
-              {mockTransactions.length} items
-            </span>
-          </div>
+    <div className="mx-auto max-w-4xl">
+      {/* Main transactions board */}
+      <div className="board mb-8 p-6">
+        <div className="mb-6 flex items-center justify-between">
+          <h2 className="text-2xl font-bold text-white">Recent Transactions</h2>
+          <span className="badge badge-purple">
+            {mockTransactions.length} items
+          </span>
+        </div>
 
-          <div className="mb-4">
-            <div className="grid grid-cols-4 gap-4 border-b border-purple-100 pb-3 font-semibold text-white">
-              <span>Date</span>
-              <span>Item</span>
-              <span>Amount</span>
-              <span>Status</span>
-            </div>
-          </div>
-
-          <div className="space-y-2">
-            {mockTransactions.map((transaction, index) => (
-              <div
-                key={transaction.id}
-                className="grid grid-cols-4 gap-4 rounded-lg bg-white/90 p-3 transition-all hover:bg-white hover:shadow-md"
-              >
-                <span className="text-gray-600">
-                  {new Date(transaction.date).toLocaleDateString()}
-                </span>
-                <span className="font-medium text-gray-800">
-                  {transaction.item}
-                </span>
-                <span className="font-mono font-semibold text-purple-500">
-                  ${transaction.total_amount.toFixed(2)}
-                </span>
-                <span
-                  className={`badge ${index % 3 === 0 ? "badge-purple" : index % 3 === 1 ? "badge-orange" : "badge-green"}`}
-                >
-                  Split {transaction.people_involved}
-                </span>
-              </div>
-            ))}
+        <div className="mb-4">
+          <div className="grid grid-cols-4 gap-4 border-b border-purple-100 pb-3 font-semibold text-white">
+            <span>Date</span>
+            <span>Item</span>
+            <span>Amount</span>
+            <span>Status</span>
           </div>
         </div>
 
-        {/* Action buttons */}
-        <div className="flex flex-col items-center gap-4 text-center sm:flex-row sm:justify-center">
-          <button
-            onClick={handleAddTransaction}
-            className="btn-secondary flex items-center gap-2 text-lg"
-          >
-            <span>➕</span> Add Transaction
-          </button>
+        <div className="space-y-2">
+          {mockTransactions.map((transaction, index) => (
+            <div
+              key={transaction.id}
+              className="grid grid-cols-4 gap-4 rounded-lg bg-white/90 p-3 transition-all hover:bg-white hover:shadow-md"
+            >
+              <span className="text-gray-600">
+                {new Date(transaction.date).toLocaleDateString()}
+              </span>
+              <span className="font-medium text-gray-800">
+                {transaction.item}
+              </span>
+              <span className="font-mono font-semibold text-purple-500">
+                ${transaction.total_amount.toFixed(2)}
+              </span>
+              <span
+                className={`badge ${index % 3 === 0 ? "badge-purple" : index % 3 === 1 ? "badge-orange" : "badge-green"}`}
+              >
+                Split {transaction.people_involved}
+              </span>
+            </div>
+          ))}
         </div>
       </div>
     </div>

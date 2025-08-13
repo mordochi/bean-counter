@@ -1,5 +1,11 @@
+import { Oi } from "next/font/google";
 import AddTransactionButton from "./_components/AddTransactionButton";
 import Board from "./_components/Board";
+
+const oi = Oi({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 export default function Home() {
   return (
@@ -13,8 +19,12 @@ export default function Home() {
       </div>
 
       <div className="mx-auto max-w-4xl">
-        <h1 className="text-gradient mt-12 mb-16 text-center text-5xl font-bold">
-          🫘 Bean Counter
+        <h1
+          className={`${oi.className} text-gradient mt-40 mb-16 text-center text-7xl leading-22 font-bold`}
+        >
+          🫘 Bean
+          <br />
+          Counter
         </h1>
 
         {/* Main transactions board */}
