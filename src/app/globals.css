@@ -55,7 +55,7 @@
   --color-bg-light: var(--color-gray-50);
   --color-bg-dark: var(--color-gray-500);
 
-  --color-text-primary: var(--color-gray-600);
+  --color-text-primary: var(--color-gray-500);
   --color-text-secondary: var(--color-gray-300);
 
   --color-border-secondary: var(--color-orange-300);
@@ -76,7 +76,7 @@ body {
     var(--color-purple-100) 100%
   );
   min-height: 100vh;
-  color: var(--color-gray-600);
+  color: var(--color-text-primary);
   font-family: var(--font-sans), "Comic Sans MS", cursive, sans-serif;
   position: relative;
 }
@@ -258,7 +258,6 @@ body::before {
   .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
   }
 
   .grid {

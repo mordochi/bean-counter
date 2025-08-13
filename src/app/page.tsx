@@ -1,6 +1,5 @@
 import { Oi } from "next/font/google";
-import AddTransactionButton from "./_components/AddTransactionButton";
-import Board from "./_components/Board";
+import RequestToLogIn from "./_components/RequestToLogIn";
 
 const oi = Oi({
   weight: "400",
@@ -18,21 +17,18 @@ export default function Home() {
         <div className="shape"></div>
       </div>
 
-      <div className="mx-auto max-w-4xl">
-        <h1
-          className={`${oi.className} text-gradient mt-40 mb-16 text-center text-7xl leading-22 font-bold`}
-        >
-          🫘 Bean
-          <br />
-          Counter
-        </h1>
+      <div className="mx-auto max-w-6xl">
+        {/* Hero Section */}
+        <div className="flex min-h-screen flex-col items-center justify-center text-center">
+          <h1
+            className={`${oi.className} text-gradient mb-8 text-7xl leading-tight font-bold md:text-8xl`}
+          >
+            🫘 Bean
+            <br />
+            Counter
+          </h1>
 
-        {/* Main transactions board */}
-        <Board />
-
-        {/* Action buttons */}
-        <div className="flex flex-col items-center gap-4 text-center sm:flex-row sm:justify-center">
-          <AddTransactionButton />
+          <RequestToLogIn />
         </div>
       </div>
     </div>
