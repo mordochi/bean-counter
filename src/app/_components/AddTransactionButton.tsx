@@ -1,5 +1,5 @@
 "use client";
-import SecondaryButton from "@/components/SecondaryButton";
+import Button from "@/components/Button";
 
 export default function AddTransactionButton() {
   const handleAddTransaction = () => {
@@ -7,8 +7,8 @@ export default function AddTransactionButton() {
   };
 
   return (
-    <SecondaryButton onClick={handleAddTransaction}>
+    <Button type="secondary" onClick={handleAddTransaction}>
       <span>➕</span> Add Transaction
-    </SecondaryButton>
+    </Button>
   );
 }

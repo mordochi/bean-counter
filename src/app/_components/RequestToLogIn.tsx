@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Button from "@/components/Button";
 
 export default function RequestToLogIn() {
   return (
@@ -17,9 +18,7 @@ export default function RequestToLogIn() {
 
       {/* CTA Section */}
       <div className="space-y-6">
-        <button className="btn-primary transform px-12 py-4 text-xl transition-all duration-300 hover:scale-105">
-          ✨ Get yourself a Bean Counter
-        </button>
+        <Button type="primary">✨ Get yourself a Bean Counter</Button>
       </div>
     </div>
   );
