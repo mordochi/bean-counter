@@ -1,6 +1,6 @@
 import { Oi } from "next/font/google";
-import Image from "next/image";
 import { createClient } from "@/lib/supabaseServer";
+import AddSharedBoard from "./_components/AddSharedBoard";
 import RequestToLogIn from "./_components/RequestToLogIn";
 
 const oi = Oi({
@@ -36,23 +36,7 @@ export default async function Home() {
           </h1>
 
           {user ? (
-            <div className="flex flex-col items-center justify-center">
-              <Image
-                src="/images/bean.png"
-                alt="Bean Counter"
-                width={200}
-                height={200}
-              />
-
-              <p className="mb-12 max-w-2xl text-xl md:text-2xl">
-                Welcome back, {user.email}! Ready to split some expenses?
-              </p>
-
-              <div className="space-y-6">
-                {/* Add your main app content here */}
-                <p className="text-green-600">You are logged in!</p>
-              </div>
-            </div>
+            <AddSharedBoard name={user.user_metadata.name} />
           ) : (
             <RequestToLogIn />
           )}
