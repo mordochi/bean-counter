@@ -64,10 +64,6 @@ const mockTransactions = [
 ];
 
 export default function Board() {
-  const handleAddTransaction = () => {
-    console.log("Add new transaction");
-  };
-
   return (
     <div className="mx-auto max-w-4xl">
       {/* Main transactions board */}
