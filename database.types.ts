@@ -126,13 +126,21 @@ export type Database = {
         Args: { friend_user_id: string };
         Returns: string;
       };
+      add_friendship_request_by_email: {
+        Args: { friend_email: string };
+        Returns: string;
+      };
       get_user_friends: {
         Args: Record<PropertyKey, never>;
         Returns: {
-          friend_email: string;
-          friendship_created_at: string;
           friend_id: string;
+          friendship_created_at: string;
+          friend_email: string;
         }[];
+      };
+      unfriend_user: {
+        Args: { friend_user_id: string };
+        Returns: boolean;
       };
     };
     Enums: {
