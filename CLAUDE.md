@@ -1,1 +1,2 @@
 - Use the high level Button component in @src/components/Button/
+- When naming a boolean state, we use `is` Prefex, like `isLoading`, `isChecked`
