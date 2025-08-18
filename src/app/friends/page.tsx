@@ -1,5 +1,6 @@
 import AddAFriend from "./_components/AddAFriend";
 import MyID from "./_components/MyID";
+import PendingRequests from "./_components/PendingRequests";
 
 export default function FriendsPage() {
   return (
@@ -15,6 +16,9 @@ export default function FriendsPage() {
 
       {/* Add Friend Form */}
       <AddAFriend />
+
+      {/* Pending Friend Requests */}
+      <PendingRequests />
     </div>
   );
 }
