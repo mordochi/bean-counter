@@ -7,33 +7,38 @@ export type Json =
   | Json[];
 
 export type Database = {
-  graphql_public: {
-    Tables: {
-      [_ in never]: never;
-    };
-    Views: {
-      [_ in never]: never;
-    };
-    Functions: {
-      graphql: {
-        Args: {
-          extensions?: Json;
-          operationName?: string;
-          query?: string;
-          variables?: Json;
-        };
-        Returns: Json;
-      };
-    };
-    Enums: {
-      [_ in never]: never;
-    };
-    CompositeTypes: {
-      [_ in never]: never;
-    };
-  };
   public: {
     Tables: {
+      friendships: {
+        Row: {
+          created_at: string;
+          id: string;
+          requested_by: string;
+          status: string | null;
+          updated_at: string;
+          user_id1: string;
+          user_id2: string;
+        };
+        Insert: {
+          created_at?: string;
+          id?: string;
+          requested_by: string;
+          status?: string | null;
+          updated_at?: string;
+          user_id1: string;
+          user_id2: string;
+        };
+        Update: {
+          created_at?: string;
+          id?: string;
+          requested_by?: string;
+          status?: string | null;
+          updated_at?: string;
+          user_id1?: string;
+          user_id2?: string;
+        };
+        Relationships: [];
+      };
       shared_boards: {
         Row: {
           board_name: string | null;
@@ -113,7 +118,22 @@ export type Database = {
       [_ in never]: never;
     };
     Functions: {
-      [_ in never]: never;
+      accept_friendship_request: {
+        Args: { friendship_id: string };
+        Returns: boolean;
+      };
+      add_friendship_request: {
+        Args: { friend_user_id: string };
+        Returns: string;
+      };
+      get_user_friends: {
+        Args: Record<PropertyKey, never>;
+        Returns: {
+          friend_email: string;
+          friendship_created_at: string;
+          friend_id: string;
+        }[];
+      };
     };
     Enums: {
       [_ in never]: never;
@@ -245,9 +265,6 @@ export type CompositeTypes<
     : never;
 
 export const Constants = {
-  graphql_public: {
-    Enums: {},
-  },
   public: {
     Enums: {},
   },
