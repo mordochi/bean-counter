@@ -130,13 +130,26 @@ export type Database = {
         Args: { friend_email: string };
         Returns: string;
       };
+      get_pending_friendship_requests: {
+        Args: Record<PropertyKey, never>;
+        Returns: {
+          requester_email: string;
+          created_at: string;
+          requester_id: string;
+          friendship_id: string;
+        }[];
+      };
       get_user_friends: {
         Args: Record<PropertyKey, never>;
         Returns: {
-          friend_id: string;
-          friendship_created_at: string;
           friend_email: string;
+          friendship_created_at: string;
+          friend_id: string;
         }[];
+      };
+      reject_friendship_request: {
+        Args: { friendship_id: string };
+        Returns: boolean;
       };
       unfriend_user: {
         Args: { friend_user_id: string };
