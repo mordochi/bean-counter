@@ -1,4 +1,6 @@
 import { Oi } from "next/font/google";
+import Image from "next/image";
+import { createClient } from "@/lib/supabaseServer";
 import RequestToLogIn from "./_components/RequestToLogIn";
 
 const oi = Oi({
@@ -6,7 +8,12 @@ const oi = Oi({
   subsets: ["latin"],
 });
 
-export default function Home() {
+export default async function Home() {
+  const client = await createClient();
+  const {
+    data: { user },
+  } = await client.auth.getUser();
+
   return (
     <div className="container min-h-screen">
       {/* Floating background shapes */}
@@ -28,7 +35,27 @@ export default function Home() {
             Counter
           </h1>
 
-          <RequestToLogIn />
+          {user ? (
+            <div className="flex flex-col items-center justify-center">
+              <Image
+                src="/images/bean.png"
+                alt="Bean Counter"
+                width={200}
+                height={200}
+              />
+
+              <p className="mb-12 max-w-2xl text-xl md:text-2xl">
+                Welcome back, {user.email}! Ready to split some expenses?
+              </p>
+
+              <div className="space-y-6">
+                {/* Add your main app content here */}
+                <p className="text-green-600">You are logged in!</p>
+              </div>
+            </div>
+          ) : (
+            <RequestToLogIn />
+          )}
         </div>
       </div>
     </div>

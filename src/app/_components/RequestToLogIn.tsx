@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Button from "@/components/Button";
+import LogInButton from "./LogInButton";
 
 export default function RequestToLogIn() {
   return (
@@ -18,7 +18,7 @@ export default function RequestToLogIn() {
 
       {/* CTA Section */}
       <div className="space-y-6">
-        <Button type="primary">✨ Get yourself a Bean Counter</Button>
+        <LogInButton />
       </div>
     </div>
   );
