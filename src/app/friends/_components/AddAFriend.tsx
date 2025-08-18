@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import SupabaseClient from "@/lib/supabaseClient";
+import Instructions from "./Instructions";
 
 const isValidInput = (input: string) => {
   // Check if it's an email or user ID format
@@ -18,6 +19,7 @@ export default function AddAFriend() {
   const [friendInput, setFriendInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState("");
+  const [isInstructionsOpen, setIsInstructionsOpen] = useState(false);
 
   const handleAddFriend = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -124,6 +126,43 @@ export default function AddAFriend() {
           <p className="text-sm text-green-700">{message}</p>
         </div>
       )}
+
+      {/* Instructions Toggle */}
+      <div className="mt-4">
+        <button
+          onClick={() => setIsInstructionsOpen(!isInstructionsOpen)}
+          className="flex w-full items-center justify-between rounded-2xl text-left transition-all duration-200"
+        >
+          <span className="text-sm font-medium text-gray-700">
+            How to Add Friends
+          </span>
+          <svg
+            className={`h-5 w-5 text-gray-500 transition-transform duration-200 ${
+              isInstructionsOpen ? "rotate-180" : ""
+            }`}
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+        </button>
+
+        <div
+          className={`overflow-hidden transition-all duration-300 ease-in-out ${
+            isInstructionsOpen
+              ? "mt-2 max-h-96 opacity-100"
+              : "max-h-0 opacity-0"
+          }`}
+        >
+          <Instructions />
+        </div>
+      </div>
     </div>
   );
 }

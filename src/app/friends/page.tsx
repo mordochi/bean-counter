@@ -1,5 +1,4 @@
 import AddAFriend from "./_components/AddAFriend";
-import Instructions from "./_components/Instructions";
 import MyID from "./_components/MyID";
 
 export default function FriendsPage() {
@@ -16,9 +15,6 @@ export default function FriendsPage() {
 
       {/* Add Friend Form */}
       <AddAFriend />
-
-      {/* Instructions */}
-      <Instructions />
     </div>
   );
 }

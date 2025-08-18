@@ -114,6 +114,10 @@ body::before {
   z-index: -1;
 }
 
+button {
+  cursor: pointer;
+}
+
 @layer components {
   .board {
     background: var(--color-purple-300);

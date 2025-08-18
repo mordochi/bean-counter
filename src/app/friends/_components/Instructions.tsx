@@ -1,6 +1,6 @@
 export default function Instructions() {
   return (
-    <div className="rounded-3xl border border-blue-200/30 bg-gradient-to-br from-blue-50/80 to-white/95 p-6 shadow-lg">
+    <div className="rounded-3xl bg-gradient-to-br from-blue-50/80 to-white/95 p-6">
       <h3 className="mb-3 font-semibold text-gray-800">How to Add Friends</h3>
       <ul className="space-y-2 text-sm text-gray-600">
         <li className="flex items-center gap-2">
