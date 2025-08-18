@@ -21,7 +21,46 @@ An APP that manages shared transactions between two people. The basic feature is
 - `added_by_user_id`: Which user added this transaction record (references auth.users)
 - `created_at`, `updated_at`: Timestamps
 
+### Friendships (`friendships`)
+- `id`: UUID primary key
+- `user_id1`: First user in the friendship (smaller UUID, references auth.users)
+- `user_id2`: Second user in the friendship (larger UUID, references auth.users)
+- `status`: Friendship status ('pending', 'accepted', 'rejected', 'blocked')
+- `requested_by`: Which user initiated the friendship request (references auth.users)
+- `created_at`, `updated_at`: Timestamps
+
 Later on, we will add the feature for users to one-click transfer debt to the other person and mark the debt as cleared.
+
+## Database Migrations
+
+This project uses Supabase for database management. To run migrations:
+
+### Local Development
+1. Start the local Supabase server:
+   ```bash
+   npx supabase start
+   ```
+
+2. Run migrations locally:
+   ```bash
+   npx supabase migration up
+   ```
+
+3. Push local migrations to remote database:
+   ```bash
+   npx supabase db push
+   ```
+
+4. Generate TypeScript types after migrations:
+   ```bash
+   npx supabase gen types typescript --local --schema public > database.types.ts
+   ```
+
+### Migration Workflow
+1. Create migration files in `supabase/migrations/`
+2. Test locally with `npx supabase migration up`
+3. Push to remote with `npx supabase db push`
+4. Update TypeScript types with the generation command
 
 ### Platform
 - Web
