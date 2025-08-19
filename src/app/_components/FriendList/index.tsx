@@ -9,7 +9,7 @@ export interface Friend {
   friendship_created_at: string;
 }
 
-export default function Friends({
+export default function FriendList({
   friends,
   onSelect,
   onClose,

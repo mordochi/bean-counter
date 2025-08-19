@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Button from "@/components/Button";
 import SupabaseClient from "@/lib/supabaseClient";
-import Friends from "./Friends";
+import FriendList from "./FriendList";
 
 interface Friend {
   friend_id: string;
@@ -44,7 +44,7 @@ export default function AddSharedBoardButton() {
 
   if (showFriendsList) {
     return (
-      <Friends
+      <FriendList
         friends={friends}
         onSelect={handleSelectFriend}
         onClose={() => setShowFriendsList(false)}
