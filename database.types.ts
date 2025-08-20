@@ -130,21 +130,25 @@ export type Database = {
         Args: { friend_email: string };
         Returns: string;
       };
+      create_shared_board: {
+        Args: { friend_id: string; p_board_name: string };
+        Returns: string;
+      };
       get_pending_friendship_requests: {
         Args: Record<PropertyKey, never>;
         Returns: {
-          requester_email: string;
           created_at: string;
           requester_id: string;
           friendship_id: string;
+          requester_email: string;
         }[];
       };
       get_user_friends: {
         Args: Record<PropertyKey, never>;
         Returns: {
           friend_email: string;
-          friendship_created_at: string;
           friend_id: string;
+          friendship_created_at: string;
         }[];
       };
       reject_friendship_request: {
