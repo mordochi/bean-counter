@@ -1,10 +1,15 @@
+import { ButtonHTMLAttributes } from "react";
 import PrimaryButton from "./PrimaryButton";
 import SecondaryButton from "./SecondaryButton";
+
+export type ButtonProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, "type">;
 
 export default function Button({
   type,
   ...props
-}: { type: "primary" | "secondary" } & Parameters<typeof PrimaryButton>[0]) {
+}: {
+  type: "primary" | "secondary";
+} & ButtonProps) {
   let ButtonComponent;
   switch (type) {
     case "primary":
