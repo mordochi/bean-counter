@@ -4,10 +4,11 @@ import SupabaseClient from "@/lib/supabaseClient";
 import Instructions from "./Instructions";
 
 const isValidInput = (input: string) => {
-  // Check if it's an email or user ID format
+  // Check if it's an email or UUID format
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const userIdRegex = /^user_\w+$/;
-  return emailRegex.test(input) || userIdRegex.test(input) || input.length > 3;
+  const uuidRegex =
+    /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+  return emailRegex.test(input) || uuidRegex.test(input) || input.length > 3;
 };
 
 const isEmail = (input: string) => {
@@ -95,7 +96,7 @@ export default function AddAFriend() {
             type="text"
             value={friendInput}
             onChange={(e) => setFriendInput(e.target.value)}
-            placeholder="Enter user ID (e.g., user_12345) or email address"
+            placeholder="Enter user ID (e.g., c0e4b719-e594-4436-a077-2994fdc5a0e3) or email address"
             className="w-full rounded-2xl border border-purple-200/50 bg-white/80 px-4 py-3 text-gray-800 placeholder-gray-200 shadow-sm transition-all duration-200 focus:border-purple-400 focus:ring-2 focus:ring-purple-200 focus:outline-none"
             disabled={isLoading}
           />
