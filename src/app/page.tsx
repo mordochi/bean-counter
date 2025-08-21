@@ -40,10 +40,7 @@ export default async function Home() {
 
           {user ? (
             userBoards.length ? (
-              <UserBoardsList
-                boards={userBoards}
-                userName={user.user_metadata.name}
-              />
+              <UserBoardsList boards={userBoards} />
             ) : (
               <AddSharedBoard name={user.user_metadata.name} />
             )
