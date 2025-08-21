@@ -1,7 +1,9 @@
 import { Oi } from "next/font/google";
+import { getUserBoards } from "@/lib/dal/getUserBoards";
 import { createClient } from "@/lib/supabaseServer";
 import AddSharedBoard from "./_components/AddSharedBoard";
 import RequestToLogIn from "./_components/RequestToLogIn";
+import UserBoardsList from "./_components/UserBoardsList";
 
 const oi = Oi({
   weight: "400",
@@ -13,6 +15,7 @@ export default async function Home() {
   const {
     data: { user },
   } = await client.auth.getUser();
+  const userBoards = await getUserBoards();
 
   return (
     <div className="container min-h-screen">
@@ -36,7 +39,14 @@ export default async function Home() {
           </h1>
 
           {user ? (
-            <AddSharedBoard name={user.user_metadata.name} />
+            userBoards.length ? (
+              <UserBoardsList
+                boards={userBoards}
+                userName={user.user_metadata.name}
+              />
+            ) : (
+              <AddSharedBoard name={user.user_metadata.name} />
+            )
           ) : (
             <RequestToLogIn />
           )}
