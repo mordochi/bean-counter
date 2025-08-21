@@ -138,16 +138,18 @@ export type Database = {
         Args: Record<PropertyKey, never>;
         Returns: {
           created_at: string;
-          requester_id: string;
           friendship_id: string;
+          requester_id: string;
           requester_email: string;
         }[];
       };
       get_user_friends: {
         Args: Record<PropertyKey, never>;
         Returns: {
-          friend_email: string;
           friend_id: string;
+          friend_email: string;
+          friend_name: string;
+          friend_avatar: string;
           friendship_created_at: string;
         }[];
       };
